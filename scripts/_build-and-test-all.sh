@@ -11,7 +11,7 @@ docker="./gradlew ${database}Compose"
 ${docker}Down
 ${docker}Up
 
-./gradlew cleanTest build
+./gradlew build
 
 ${docker}Down
 
