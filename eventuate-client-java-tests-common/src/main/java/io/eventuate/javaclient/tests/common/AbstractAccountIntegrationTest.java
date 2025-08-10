@@ -23,7 +23,7 @@ import java.util.Optional;
 import java.util.UUID;
 import java.util.concurrent.ExecutionException;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public abstract class AbstractAccountIntegrationTest {
   private Logger logger = LoggerFactory.getLogger(getClass());

@@ -4,3 +4,6 @@ dependencies {
     api "io.eventuate.common:eventuate-common-jdbc:$eventuateCommonVersion"
     api project(":eventuate-client-java-common-impl-crud")
 }
+tasks.withType(Test).configureEach {
+    useJUnitPlatform()
+}

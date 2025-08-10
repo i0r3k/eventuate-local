@@ -48,7 +48,7 @@ public class EventuateAggregateStoreCrudImpl implements EventuateAggregateStoreC
         activityLogger.debug("Saved entity: {} {} {}", clasz.getName(), result.getEntityId(), toSerializedEventsWithIds(serializedEvents, result.getEventIds()));
       return result.toEntityIdAndVersion();
     } catch (RuntimeException e) {
-      activityLogger.error(String.format("Save entity failed: %s", clasz.getName()), e);
+      activityLogger.error("Save entity failed: %s".formatted(clasz.getName()), e);
       throw e;
     }
   }
@@ -82,7 +82,7 @@ public class EventuateAggregateStoreCrudImpl implements EventuateAggregateStoreC
                       .orElseGet(() -> Aggregates.recreateAggregate(clasz, events, missingApplyEventMethodStrategy)));
     } catch (RuntimeException e) {
       if (activityLogger.isDebugEnabled())
-        activityLogger.trace(String.format("Find entity failed: %s %s", clasz.getName(), entityId), e);
+        activityLogger.trace("Find entity failed: %s %s".formatted(clasz.getName(), entityId), e);
       throw e;
     }
   }
@@ -113,7 +113,7 @@ public class EventuateAggregateStoreCrudImpl implements EventuateAggregateStoreC
       return result.toEntityIdAndVersion();
     } catch (RuntimeException e) {
       if (activityLogger.isDebugEnabled())
-        activityLogger.error(String.format("Update entity failed: %s %s", clasz.getName(), entityIdAndVersion), e);
+        activityLogger.error("Update entity failed: %s %s".formatted(clasz.getName(), entityIdAndVersion), e);
       throw e;
     }
   }
@@ -142,7 +142,7 @@ public class EventuateAggregateStoreCrudImpl implements EventuateAggregateStoreC
       return result.toEntityIdAndVersion();
     } catch (RuntimeException e) {
       if (activityLogger.isDebugEnabled())
-        activityLogger.error(String.format("Update entity without reading failed: %s %s", clasz.getName(), entityId), e);
+        activityLogger.error("Update entity without reading failed: %s %s".formatted(clasz.getName(), entityId), e);
       throw e;
     }
   }

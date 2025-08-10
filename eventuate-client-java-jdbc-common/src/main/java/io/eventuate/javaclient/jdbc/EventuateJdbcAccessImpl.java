@@ -97,7 +97,7 @@ public class EventuateJdbcAccessImpl implements EventuateJdbcAccess {
     Int128 entityVersion = last(eventsWithIds).getId();
 
     try {
-      eventuateJdbcStatementExecutor.update(String.format("INSERT INTO %s (entity_type, entity_id, entity_version) VALUES (?, ?, ?)", entityTable),
+      eventuateJdbcStatementExecutor.update("INSERT INTO %s (entity_type, entity_id, entity_version) VALUES (?, ?, ?)".formatted(entityTable),
               aggregateType, entityId, entityVersion.asString());
     } catch (EventuateDuplicateKeyException e) {
       throw new EntityAlreadyExistsException();
@@ -140,7 +140,7 @@ public class EventuateJdbcAccessImpl implements EventuateJdbcAccess {
   private <T extends Aggregate<T>> LoadedEvents findWithoutTransaction(String aggregateType,
                                                                        String entityId,
                                                                        Optional<AggregateCrudFindOptions> findOptions) {
-    String query = String.format("select snapshot_type, snapshot_json, entity_version, triggering_Events from %s where entity_type = ? and entity_id = ? order by entity_version desc", snapshotTable);
+    String query = "select snapshot_type, snapshot_json, entity_version, triggering_Events from %s where entity_type = ? and entity_id = ? order by entity_version desc".formatted(snapshotTable);
 
     query = eventuateSqlDialect.addLimitToSql(query, "1");
 
@@ -164,12 +164,12 @@ public class EventuateJdbcAccessImpl implements EventuateJdbcAccess {
 
     if (snapshot.isPresent()) {
       events = eventuateJdbcStatementExecutor.query(
-              String.format("SELECT * FROM %s where entity_type = ? and entity_id = ? and event_id > ? order by event_id asc", eventTable),
+              "SELECT * FROM %s where entity_type = ? and entity_id = ? and event_id > ? order by event_id asc".formatted(eventTable),
               eventAndTriggerRowMapper, aggregateType, entityId, snapshot.get().getSerializedSnapshot().getEntityVersion().asString()
       );
     } else {
       events = eventuateJdbcStatementExecutor.query(
-              String.format("SELECT * FROM %s where entity_type = ? and entity_id = ? order by event_id asc", eventTable),
+              "SELECT * FROM %s where entity_type = ? and entity_id = ? order by event_id asc".formatted(eventTable),
               eventAndTriggerRowMapper, aggregateType, entityId
       );
     }
@@ -181,7 +181,7 @@ public class EventuateJdbcAccessImpl implements EventuateJdbcAccess {
     if (matching.isPresent()) {
       throw new DuplicateTriggeringEventException();
     }
-    if (!snapshot.isPresent() && events.isEmpty())
+    if (snapshot.isEmpty() && events.isEmpty())
       throw new EntityNotFoundException(aggregateType, entityId);
     else {
       return new LoadedEvents(snapshot.map(LoadedSnapshot::getSerializedSnapshot), events.stream().map(e -> e.event).collect(Collectors.toList()));
@@ -223,7 +223,7 @@ public class EventuateJdbcAccessImpl implements EventuateJdbcAccess {
 
     Int128 updatedEntityVersion = last(eventsWithIds).getId();
 
-    int count = eventuateJdbcStatementExecutor.update(String.format("UPDATE %s SET entity_version = ? WHERE entity_type = ? and entity_id = ? and entity_version = ?", entityTable),
+    int count = eventuateJdbcStatementExecutor.update("UPDATE %s SET entity_version = ? WHERE entity_type = ? and entity_id = ? and entity_version = ?".formatted(entityTable),
             updatedEntityVersion.asString(),
             entityType,
             entityId,
@@ -237,7 +237,7 @@ public class EventuateJdbcAccessImpl implements EventuateJdbcAccess {
 
     updateOptions.flatMap(AggregateCrudUpdateOptions::getSnapshot).ifPresent(ss -> {
 
-      String query = String.format("select snapshot_type, snapshot_json, entity_version, triggering_Events from %s where entity_type = ? and entity_id = ? order by entity_version desc", snapshotTable);
+      String query = "select snapshot_type, snapshot_json, entity_version, triggering_Events from %s where entity_type = ? and entity_id = ? order by entity_version desc".formatted(snapshotTable);
 
       query = eventuateSqlDialect.addLimitToSql(query, "1");
 
@@ -262,19 +262,19 @@ public class EventuateJdbcAccessImpl implements EventuateJdbcAccess {
 
       if (previousSnapshot.isPresent()) {
         oldEvents = eventuateJdbcStatementExecutor.query(
-                String.format("SELECT * FROM %s where entity_type = ? and entity_id = ? and event_id > ? order by event_id asc", eventTable),
+                "SELECT * FROM %s where entity_type = ? and entity_id = ? and event_id > ? order by event_id asc".formatted(eventTable),
                 eventAndTriggerRowMapper, aggregateType, entityId, previousSnapshot.get().getSerializedSnapshot().getEntityVersion().asString()
         );
       } else {
         oldEvents = eventuateJdbcStatementExecutor.query(
-                String.format("SELECT * FROM %s where entity_type = ? and entity_id = ? order by event_id asc", eventTable),
+                "SELECT * FROM %s where entity_type = ? and entity_id = ? order by event_id asc".formatted(eventTable),
                 eventAndTriggerRowMapper, aggregateType, entityId
         );
       }
 
       String triggeringEvents = snapshotTriggeringEvents(previousSnapshot, oldEvents, updateOptions.flatMap(AggregateCrudUpdateOptions::getTriggeringEvent));
 
-      eventuateJdbcStatementExecutor.update(String.format("INSERT INTO %s (entity_type, entity_id, entity_version, snapshot_type, snapshot_json, triggering_events) VALUES (?, ?, ?, ?, ?, ?)", snapshotTable),
+      eventuateJdbcStatementExecutor.update("INSERT INTO %s (entity_type, entity_id, entity_version, snapshot_type, snapshot_json, triggering_events) VALUES (?, ?, ?, ?, ?, ?)".formatted(snapshotTable),
               entityType,
               entityId,
               updatedEntityVersion.asString(),
@@ -306,7 +306,7 @@ public class EventuateJdbcAccessImpl implements EventuateJdbcAccess {
 
     Int128 updatedEntityVersion = last(eventsWithIds).getId();
 
-    eventuateJdbcStatementExecutor.update(String.format("UPDATE %s SET entity_version = ? WHERE entity_type = ? and entity_id = ?", entityTable),
+    eventuateJdbcStatementExecutor.update("UPDATE %s SET entity_version = ? WHERE entity_type = ? and entity_id = ?".formatted(entityTable),
             updatedEntityVersion.asString(),
             entityType,
             entityId

@@ -9,7 +9,8 @@ import io.eventuate.javaclient.commonimpl.crud.LoadedEvents;
 import io.eventuate.javaclient.commonimpl.crud.SerializedSnapshot;
 import io.eventuate.javaclient.jdbc.EventuateJdbcAccess;
 import io.eventuate.javaclient.jdbc.SaveUpdateResult;
-import org.junit.Assert;
+import org.junit.jupiter.api.Assertions;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -37,7 +38,7 @@ public abstract class CommonEventuateJdbcAccessImplTest {
   }
 
   private void truncateTable(String table) {
-    getEventuateJdbcStatementExecutor().update(String.format("TRUNCATE TABLE %s", getEventuateSchema().qualifyTable(table)));
+    getEventuateJdbcStatementExecutor().update("TRUNCATE TABLE %s".formatted(getEventuateSchema().qualifyTable(table)));
   }
 
   public void testSave() {
@@ -46,10 +47,10 @@ public abstract class CommonEventuateJdbcAccessImplTest {
     getEventuateJdbcAccess().save(testAggregate, Collections.singletonList(eventTypeAndData), Optional.empty());
 
     List<Map<String, Object>> events = getEventuateJdbcStatementExecutor().queryForList(readAllEventsSql());
-    Assert.assertEquals(1, events.size());
+    Assertions.assertEquals(1, events.size());
 
     List<Map<String, Object>> entities = getEventuateJdbcStatementExecutor().queryForList(readAllEntitiesSql());
-    Assert.assertEquals(1, entities.size());
+    Assertions.assertEquals(1, entities.size());
   }
 
   public void testFind() {
@@ -59,7 +60,7 @@ public abstract class CommonEventuateJdbcAccessImplTest {
 
     LoadedEvents loadedEvents = getEventuateJdbcAccess().find(testAggregate, saveUpdateResult.getEntityIdVersionAndEventIds().getEntityId(), Optional.empty());
 
-    Assert.assertEquals(1, loadedEvents.getEvents().size());
+    Assertions.assertEquals(1, loadedEvents.getEvents().size());
   }
 
   public void testUpdate() {
@@ -75,16 +76,16 @@ public abstract class CommonEventuateJdbcAccessImplTest {
             Collections.singletonList(eventTypeAndData), Optional.of(new AggregateCrudUpdateOptions(Optional.empty(), Optional.of(new SerializedSnapshot("", "")))));
 
     List<Map<String, Object>> events = getEventuateJdbcStatementExecutor().queryForList(readAllEventsSql());
-    Assert.assertEquals(2, events.size());
+    Assertions.assertEquals(2, events.size());
 
     List<Map<String, Object>> entities = getEventuateJdbcStatementExecutor().queryForList(readAllEntitiesSql());
-    Assert.assertEquals(1, entities.size());
+    Assertions.assertEquals(1, entities.size());
 
     List<Map<String, Object>> snapshots = getEventuateJdbcStatementExecutor().queryForList(readAllSnapshots());
-    Assert.assertEquals(1, snapshots.size());
+    Assertions.assertEquals(1, snapshots.size());
 
     LoadedEvents loadedEvents = getEventuateJdbcAccess().find(testAggregate, saveUpdateResult.getEntityIdVersionAndEventIds().getEntityId(), Optional.empty());
-    Assert.assertTrue(loadedEvents.getSnapshot().isPresent());
+    Assertions.assertTrue(loadedEvents.getSnapshot().isPresent());
   }
 
   protected List<String> loadSqlScriptAsListOfLines(String script)  {

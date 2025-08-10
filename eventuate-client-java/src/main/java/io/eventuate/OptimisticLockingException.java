@@ -8,7 +8,7 @@ public class OptimisticLockingException extends EventuateClientException {
   private Int128 entityVersion;
 
   public OptimisticLockingException(EntityIdAndType entityIdAndType, Int128 entityVersion) {
-    super(String.format("Couldn't update entity: %s, %s, %s", entityIdAndType.getEntityType(), entityIdAndType.getEntityId(), entityVersion));
+    super("Couldn't update entity: %s, %s, %s".formatted(entityIdAndType.getEntityType(), entityIdAndType.getEntityId(), entityVersion));
     this.entityIdAndType = entityIdAndType;
     this.entityVersion = entityVersion;
   }

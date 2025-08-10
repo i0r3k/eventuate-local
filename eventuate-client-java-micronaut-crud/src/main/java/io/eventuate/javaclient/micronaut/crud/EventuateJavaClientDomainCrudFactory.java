@@ -6,7 +6,7 @@ import io.eventuate.javaclient.domain.EventHandlerProcessorEventHandlerContextRe
 import io.eventuate.javaclient.domain.EventHandlerProcessorEventHandlerContextReturningVoid;
 import io.micronaut.context.annotation.Factory;
 
-import javax.inject.Singleton;
+import jakarta.inject.Singleton;
 
 @Factory
 public class EventuateJavaClientDomainCrudFactory {

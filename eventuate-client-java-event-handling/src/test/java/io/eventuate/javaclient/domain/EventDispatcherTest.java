@@ -8,8 +8,8 @@ import io.eventuate.common.id.Int128;
 import io.eventuate.javaclient.eventhandling.exceptionhandling.EventDeliveryExceptionHandlerManager;
 import io.eventuate.javaclient.eventhandling.exceptionhandling.EventDeliveryExceptionHandlerWithState;
 import io.eventuate.javaclient.eventhandling.exceptionhandling.MyException;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.stubbing.OngoingStubbing;
 
@@ -22,7 +22,8 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 import java.util.function.Consumer;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.nullable;
 import static org.mockito.Mockito.*;
 
 public class EventDispatcherTest {
@@ -40,7 +41,7 @@ public class EventDispatcherTest {
   private DispatchedEvent<Event> de = new DispatchedEvent<>(entityId, eventId, event, swimlane, offset, eventContext, eventMetadata);
   private MyException exception = new MyException();
 
-  @Before
+  @BeforeEach
   public void setUp() {
     eventHandler = mock(EventHandler.class);
     Map<Class<?>, EventHandler> eventTypesAndHandlers = Collections.singletonMap(MyEvent.class, eventHandler);
@@ -82,7 +83,7 @@ public class EventDispatcherTest {
 
     ArgumentCaptor<Runnable> redoArg = ArgumentCaptor.forClass(Runnable.class);
 
-    verify(eventDeliveryExceptionHandlerWithState).handle(eq(exception), redoArg.capture(), any(Consumer.class), any(Runnable.class));
+    verify(eventDeliveryExceptionHandlerWithState).handle(eq(exception), redoArg.capture(), nullable(Consumer.class), nullable(Runnable.class));
     verify(exceptionHandlerManager).getEventHandler(exception);
 
     redoArg.getValue().run();
@@ -105,7 +106,7 @@ public class EventDispatcherTest {
 
     ArgumentCaptor<Runnable> ignoreArg = ArgumentCaptor.forClass(Runnable.class);
 
-    verify(eventDeliveryExceptionHandlerWithState).handle(eq(exception), any(Runnable.class), any(Consumer.class), ignoreArg.capture());
+    verify(eventDeliveryExceptionHandlerWithState).handle(eq(exception), nullable(Runnable.class), nullable(Consumer.class), ignoreArg.capture());
     verify(exceptionHandlerManager).getEventHandler(exception);
 
     ignoreArg.getValue().run();
@@ -130,7 +131,7 @@ public class EventDispatcherTest {
 
     ArgumentCaptor<Consumer> failArg = ArgumentCaptor.forClass(Consumer.class);
 
-    verify(eventDeliveryExceptionHandlerWithState).handle(eq(exception), any(Runnable.class), failArg.capture(), any(Runnable.class));
+    verify(eventDeliveryExceptionHandlerWithState).handle(eq(exception), nullable(Runnable.class), failArg.capture(), nullable(Runnable.class));
     verify(exceptionHandlerManager).getEventHandler(exception);
 
     failArg.getValue().accept(exception);

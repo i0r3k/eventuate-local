@@ -1,7 +1,7 @@
 package io.eventuate.javaclient.commonimpl.crud;
 
 import io.eventuate.EventContext;
-import org.apache.commons.lang.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import java.util.Optional;
 

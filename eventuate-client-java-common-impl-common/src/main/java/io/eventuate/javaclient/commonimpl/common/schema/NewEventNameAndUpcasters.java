@@ -21,6 +21,6 @@ public class NewEventNameAndUpcasters  {
   }
 
   public boolean isEmpty() {
-    return !eventType.isPresent() && upcasters.isEmpty();
+    return eventType.isEmpty() && upcasters.isEmpty();
   }
 }

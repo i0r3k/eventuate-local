@@ -8,7 +8,7 @@ import io.eventuate.javaclient.commonimpl.events.SerializedEventDeserializer;
 import io.micronaut.context.annotation.Factory;
 import io.micronaut.core.annotation.Nullable;
 
-import javax.inject.Singleton;
+import jakarta.inject.Singleton;
 
 @Factory
 public class EventuateCommonEventsFactory {

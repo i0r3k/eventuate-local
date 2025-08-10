@@ -160,10 +160,10 @@ public class AggregateRepository<T extends CommandProcessingAggregate<T, CT>, CT
                   Throwable unwrapped = CompletableFutureUtil.unwrap(throwable);
                   if (unwrapped instanceof DuplicateTriggeringEventException)
                     return new LoadedEntityWithMetadata(false, null);
-                  else if (unwrapped instanceof RuntimeException)
-                    throw (RuntimeException) unwrapped;
-                  else if (throwable instanceof RuntimeException)
-                    throw (RuntimeException) throwable;
+                  else if (unwrapped instanceof RuntimeException exception1)
+                    throw exception1;
+                  else if (throwable instanceof RuntimeException exception)
+                    throw exception;
                   else
                     // TODO - does this make sense?
                     throw new RuntimeException(throwable);

@@ -3,7 +3,7 @@ package io.eventuate.javaclient.micronaut.tests.common;
 import io.eventuate.*;
 import io.eventuate.sync.EventuateAggregateStoreCrud;
 
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 import java.util.List;
 import java.util.Optional;
 

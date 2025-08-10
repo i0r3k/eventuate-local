@@ -5,7 +5,7 @@ import io.eventuate.local.java.jdbckafkastore.AbstractCommonJdbcAutoConfiguratio
 import io.eventuate.sync.AggregateRepository;
 import org.junit.jupiter.api.Test;
 
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 import java.util.concurrent.ExecutionException;
 
 public abstract class AbstractSnapshotsIntegrationTest extends AbstractCommonJdbcAutoConfigurationWithSnapshotsIntegrationTest {

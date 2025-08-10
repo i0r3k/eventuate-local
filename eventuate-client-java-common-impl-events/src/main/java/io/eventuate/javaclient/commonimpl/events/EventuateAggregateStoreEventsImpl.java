@@ -37,7 +37,7 @@ public class EventuateAggregateStoreEventsImpl implements EventuateAggregateStor
         if (throwable == null)
           activityLogger.debug("Subscribed {} {}", subscriberId, aggregatesAndEvents);
         else
-          activityLogger.error(String.format("Subscribe failed: %s %s", subscriberId, aggregatesAndEvents), throwable);
+          activityLogger.error("Subscribe failed: %s %s".formatted(subscriberId, aggregatesAndEvents), throwable);
       });
     else
       return outcome;

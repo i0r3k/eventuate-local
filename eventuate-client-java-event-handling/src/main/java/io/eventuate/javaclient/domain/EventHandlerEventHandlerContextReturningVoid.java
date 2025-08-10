@@ -3,7 +3,7 @@ package io.eventuate.javaclient.domain;
 import io.eventuate.DispatchedEvent;
 import io.eventuate.Event;
 import io.eventuate.EventuateAggregateStoreCrud;
-import org.apache.commons.lang.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import java.lang.reflect.Method;
 import java.util.concurrent.CompletableFuture;

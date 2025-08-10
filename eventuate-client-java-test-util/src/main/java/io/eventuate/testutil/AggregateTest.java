@@ -5,12 +5,12 @@ import io.eventuate.Command;
 import io.eventuate.DefaultMissingApplyEventMethodStrategy;
 import io.eventuate.Event;
 import io.eventuate.ReflectiveMutableCommandProcessingAggregate;
-import org.apache.commons.lang.builder.EqualsBuilder;
-import org.apache.commons.lang.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import java.util.List;
 
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.fail;
 
 /**
  * Abstract base class for writing unit tests for aggregates
@@ -60,11 +60,11 @@ public abstract class AggregateTest<T extends ReflectiveMutableCommandProcessing
 
   protected void assertEventsEquals(Event... expectedEvents) {
     if (expectedEvents.length != events.size())
-      fail(String.format("After processing %s expected %s event(s) but got %s", ToStringBuilder.reflectionToString(command), expectedEvents.length, events.size()));
+      fail("After processing %s expected %s event(s) but got %s".formatted(ToStringBuilder.reflectionToString(command), expectedEvents.length, events.size()));
     for (int i = 0; i < expectedEvents.length; i++) {
       Event expectedEvent = expectedEvents[i];
       if (!EqualsBuilder.reflectionEquals(expectedEvent, events.get(0))) {
-        fail(String.format("After processing command %s expected %s th event to be %s but got %s",
+        fail("After processing command %s expected %s th event to be %s but got %s".formatted(
                 command,
                 i,
                 ToStringBuilder.reflectionToString(expectedEvent),

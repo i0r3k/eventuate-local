@@ -8,7 +8,7 @@ import io.micronaut.test.annotation.MicronautTest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 
 @MicronautTest
 public class EventuateJdbcAccessImplTest extends CommonEventuateJdbcAccessImplTest {

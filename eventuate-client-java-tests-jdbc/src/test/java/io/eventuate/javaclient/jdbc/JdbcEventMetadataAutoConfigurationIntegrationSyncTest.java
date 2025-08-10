@@ -10,20 +10,17 @@ import io.eventuate.example.banking.domain.CreateAccountCommand;
 import io.eventuate.example.banking.domain.DebitAccountCommand;
 import io.eventuate.sync.AggregateRepository;
 import io.eventuate.testutil.ReceivedEvent;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.math.BigDecimal;
 import java.util.Collections;
 import java.util.Map;
 import java.util.Optional;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = JdbcEventMetadataAutoConfigurationIntegrationSyncTestConfiguration.class)
 public class JdbcEventMetadataAutoConfigurationIntegrationSyncTest {
 

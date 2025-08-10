@@ -56,7 +56,7 @@ public class EventDispatcher {
         if (throwable == null)
           activityLogger.debug("Invoked event handler {} {} {}", subscriberId, de, eventHandler);
         else
-          activityLogger.debug(String.format("Event handler failed %s %s %s", subscriberId, de, eventHandler), throwable);
+          activityLogger.debug("Event handler failed %s %s %s".formatted(subscriberId, de, eventHandler), throwable);
       });
     }
 

@@ -7,7 +7,7 @@ import io.eventuate.sync.AggregateRepository;
 import io.eventuate.sync.EventuateAggregateStoreCrud;
 import io.micronaut.context.annotation.Factory;
 
-import javax.inject.Singleton;
+import jakarta.inject.Singleton;
 
 import static org.mockito.Mockito.spy;
 

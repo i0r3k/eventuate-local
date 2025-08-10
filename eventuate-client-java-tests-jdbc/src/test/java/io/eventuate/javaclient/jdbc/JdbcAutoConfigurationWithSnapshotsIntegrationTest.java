@@ -5,23 +5,20 @@ import io.eventuate.EntityWithMetadata;
 import io.eventuate.MissingApplyEventMethodStrategy;
 import io.eventuate.example.banking.domain.*;
 import io.eventuate.sync.AggregateRepository;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.math.BigDecimal;
 import java.util.concurrent.ExecutionException;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 
-@RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = JdbcAutoConfigurationIntegrationWithSnapshotsTestConfiguration.class)
 public class JdbcAutoConfigurationWithSnapshotsIntegrationTest  {
 

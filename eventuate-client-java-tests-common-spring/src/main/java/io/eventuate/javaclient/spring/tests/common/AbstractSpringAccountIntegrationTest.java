@@ -5,10 +5,12 @@ import io.eventuate.example.banking.services.AccountCommandSideEventHandler;
 import io.eventuate.example.banking.services.AccountQuerySideEventHandler;
 import io.eventuate.example.banking.services.MoneyTransferCommandSideEventHandler;
 import io.eventuate.javaclient.tests.common.AbstractAccountIntegrationTest;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.concurrent.ExecutionException;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public abstract class AbstractSpringAccountIntegrationTest extends AbstractAccountIntegrationTest {
   @Autowired
@@ -48,8 +50,9 @@ public abstract class AbstractSpringAccountIntegrationTest extends AbstractAccou
   }
 
   @Override
-  @Test(expected = EntityNotFoundException.class)
+  @Test
   public void shouldFailToFindNonExistentAccount() throws Throwable {
-    super.shouldFailToFindNonExistentAccount();
+    assertThrows(EntityNotFoundException.class, () ->
+      super.shouldFailToFindNonExistentAccount());
   }
 }

@@ -27,6 +27,6 @@ public class Eventually {
         }
       }
     }
-    throw new EventuallyException(String.format("Failed after %s iterations every %s %s", iterations, timeout, timeUnit), t);
+    throw new EventuallyException("Failed after %s iterations every %s %s".formatted(iterations, timeout, timeUnit), t);
   }
 }

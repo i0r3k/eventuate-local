@@ -3,8 +3,7 @@ package io.eventuate.javaclient.spring.jdbc;
 import io.eventuate.common.jdbc.EventuateSchema;
 import io.eventuate.common.spring.id.ApplicationIdGeneratorCondition;
 import io.eventuate.javaclient.jdbc.common.tests.EmbeddedSchemaModifier;
-import org.junit.Before;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -12,9 +11,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Conditional;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-@RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = EmptyEventuateJdbcAccessImplTest.Config.class, properties = "eventuate.database.schema=none")
 public class EmptyEventuateJdbcAccessImplTest extends EventuateJdbcAccessImplTest {
 
@@ -53,7 +50,7 @@ public class EmptyEventuateJdbcAccessImplTest extends EventuateJdbcAccessImplTes
     return "select * from snapshots";
   }
 
-  @Before
+  @BeforeEach
   public void init() {
     executeSql(embeddedSchemaModifier.getModifiedSqlLines(this::loadSqlScriptAsListOfLines));
     clear();

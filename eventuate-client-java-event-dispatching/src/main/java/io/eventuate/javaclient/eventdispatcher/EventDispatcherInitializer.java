@@ -7,7 +7,7 @@ import io.eventuate.javaclient.domain.EventHandlerProcessor;
 import io.eventuate.javaclient.domain.SwimlaneBasedDispatcher;
 import io.eventuate.javaclient.eventhandling.exceptionhandling.EventDeliveryExceptionHandlerManagerImpl;
 import io.eventuate.javaclient.eventhandling.exceptionhandling.EventDeliveryExceptionHandler;
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.annotation.AnnotationUtils;

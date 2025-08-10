@@ -8,7 +8,7 @@ import io.eventuate.javaclient.tests.common.AbstractAccountIntegrationTest;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 import java.util.concurrent.ExecutionException;
 
 public abstract class AbstractMicronautAccountIntegrationTest extends AbstractAccountIntegrationTest {

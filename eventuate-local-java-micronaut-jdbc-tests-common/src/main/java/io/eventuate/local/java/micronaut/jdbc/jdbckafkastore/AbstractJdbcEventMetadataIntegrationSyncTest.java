@@ -7,7 +7,7 @@ import io.eventuate.local.java.jdbckafkastore.AccountMetadataEventHandler;
 import io.eventuate.sync.AggregateRepository;
 import org.junit.jupiter.api.Test;
 
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 
 public abstract class AbstractJdbcEventMetadataIntegrationSyncTest extends AbstractCommonJdbcEventMetadataAutoConfigurationIntegrationSyncTest {
 

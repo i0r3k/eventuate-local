@@ -33,8 +33,8 @@ public class AsyncToSyncAggregateEventsAdapter implements io.eventuate.javaclien
       logger.error("Subscription failed", e);
 
       Throwable unwrapped = CompletableFutureUtil.unwrap(e);
-      if (unwrapped instanceof RuntimeException)
-        throw (RuntimeException)unwrapped;
+      if (unwrapped instanceof RuntimeException exception)
+        throw exception;
       else
         throw new RuntimeException(unwrapped);
     }

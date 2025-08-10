@@ -1,14 +1,14 @@
 package io.eventuate.javaclient.eventhandling.exceptionhandling;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.time.Duration;
 import java.util.function.Consumer;
 import java.util.stream.IntStream;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.*;
@@ -25,7 +25,7 @@ public class RetryEventDeliveryExceptionHandlerTest {
   private Consumer<Throwable> fail;
   private Runnable ignore;
 
-  @Before
+  @BeforeEach
   public void setUp() {
     scheduler = spy(new MyEventuateClientScheduler());
 

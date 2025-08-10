@@ -1,7 +1,7 @@
 package io.eventuate.javaclient.domain;
 
 import io.eventuate.*;
-import org.apache.commons.lang.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import java.lang.reflect.Method;
 import java.util.concurrent.CompletableFuture;

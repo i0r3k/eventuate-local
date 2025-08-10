@@ -1,12 +1,17 @@
 
 dependencies {
-    api "commons-lang:commons-lang:2.6"
+    api "org.apache.commons:commons-lang3:3.18.0"
     api "org.slf4j:slf4j-api:1.7.18"
+
+    implementation "org.junit.jupiter:junit-jupiter:5.13.4"
 
     api "io.eventuate.common:eventuate-common-id:$eventuateCommonVersion"
 
     testImplementation project(":eventuate-client-java-tests-example-domain")
-    testImplementation 'org.mockito:mockito-all:1.10.19'
+    testImplementation 'org.mockito:mockito-core:4.11.0'
 
+}
+tasks.withType(Test).configureEach {
+    useJUnitPlatform()
 }
 

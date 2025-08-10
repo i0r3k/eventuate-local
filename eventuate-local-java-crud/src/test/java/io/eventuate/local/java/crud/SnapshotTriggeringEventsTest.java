@@ -6,14 +6,13 @@ import io.eventuate.common.json.mapper.JSonMapper;
 import io.eventuate.javaclient.jdbc.EventAndTrigger;
 import io.eventuate.javaclient.jdbc.LoadedSnapshot;
 import io.eventuate.local.java.common.EtopEventContext;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class SnapshotTriggeringEventsTest {
 
@@ -37,18 +36,22 @@ public class SnapshotTriggeringEventsTest {
     ste.checkForDuplicateEvent(EtopEventContext.decode(a_1_100).get());
   }
 
-  @Test(expected = DuplicateTriggeringEventException.class)
+  @Test
   public void shouldRejectEquals() {
-    SnapshotTriggeringEvents ste = new SnapshotTriggeringEvents();
-    ste.add(a_1_99);
-    ste.checkForDuplicateEvent(EtopEventContext.decode(a_1_99).get());
+    assertThrows(DuplicateTriggeringEventException.class, () -> {
+      SnapshotTriggeringEvents ste = new SnapshotTriggeringEvents();
+      ste.add(a_1_99);
+      ste.checkForDuplicateEvent(EtopEventContext.decode(a_1_99).get());
+    });
   }
 
-  @Test(expected = DuplicateTriggeringEventException.class)
+  @Test
   public void shouldRejectLessThan() {
-    SnapshotTriggeringEvents ste = new SnapshotTriggeringEvents();
-    ste.add(a_1_99);
-    ste.checkForDuplicateEvent(EtopEventContext.decode(a_1_98).get());
+    assertThrows(DuplicateTriggeringEventException.class, () -> {
+      SnapshotTriggeringEvents ste = new SnapshotTriggeringEvents();
+      ste.add(a_1_99);
+      ste.checkForDuplicateEvent(EtopEventContext.decode(a_1_98).get());
+    });
   }
 
   @Test

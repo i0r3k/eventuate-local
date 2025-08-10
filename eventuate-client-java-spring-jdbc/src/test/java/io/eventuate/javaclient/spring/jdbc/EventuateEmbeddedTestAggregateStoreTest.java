@@ -8,14 +8,12 @@ import io.eventuate.javaclient.commonimpl.crud.*;
 import io.eventuate.javaclient.commonimpl.crud.sync.AggregateCrud;
 import io.eventuate.javaclient.commonimpl.events.sync.AggregateEvents;
 import io.eventuate.javaclient.spring.EventuateJavaClientDomainConfiguration;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
@@ -25,9 +23,8 @@ import java.util.concurrent.TimeUnit;
 import java.util.function.Supplier;
 
 import static java.util.Collections.*;
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
-@RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = EventuateEmbeddedTestAggregateStoreTest.EventuateJdbcEventStoreTestConfiguration.class)
 public class EventuateEmbeddedTestAggregateStoreTest {
 

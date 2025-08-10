@@ -2,9 +2,11 @@
 dependencies {
 
     api project(":eventuate-client-java-tests-common")
-    api "junit:junit:4.11"
+
+    implementation "org.junit.jupiter:junit-jupiter:5.13.4"
 }
 
 test {
     forkEvery 1
+    useJUnitPlatform()
 }

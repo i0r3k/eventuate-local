@@ -8,7 +8,7 @@ public class EtopEventContext {
 
   public static final String PREFIX = "etpo:";
   public static EventContext make(String id, String topic, int partition, long offset) {
-    return new EventContext(String.format("%s%s:%s:%s:%s", PREFIX, id, topic, partition, offset));
+    return new EventContext("%s%s:%s:%s:%s".formatted(PREFIX, id, topic, partition, offset));
   }
 
   public static Optional<DecodedEtopContext> decode(EventContext te) {

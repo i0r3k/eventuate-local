@@ -1,12 +1,12 @@
 package io.eventuate.javaclient.eventhandling.exceptionhandling;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.function.Consumer;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.*;
 
 public class IgnoreEventDeliveryExceptionHandlerTest {
@@ -17,7 +17,7 @@ public class IgnoreEventDeliveryExceptionHandlerTest {
   private Consumer<Throwable> fail;
   private Runnable ignore;
 
-  @Before
+  @BeforeEach
   public void setUp() {
 
     exceptionHandler = new IgnoreEventDeliveryExceptionHandler()

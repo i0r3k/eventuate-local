@@ -7,7 +7,7 @@ public abstract class EventHandlerMethodProcessor implements EventHandlerProcess
 
   @Override
   public boolean supports(AccessibleObject fieldOrMethod) {
-    return (fieldOrMethod instanceof Method) && supportsMethod((Method)fieldOrMethod);
+    return (fieldOrMethod instanceof Method m) && supportsMethod(m);
   }
 
 

@@ -23,16 +23,16 @@ import io.eventuate.javaclient.jdbc.EventuateEmbeddedTestAggregateStore;
 import io.eventuate.javaclient.jdbc.JdkTimerBasedEventuateClientScheduler;
 import io.eventuate.javaclient.spring.common.EventuateCommonConfiguration;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Conditional;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import java.util.Collections;
 
-@Configuration
+@AutoConfiguration
 @EnableTransactionManagement
 @Import({EventuateCommonConfiguration.class,
         SqlDialectConfiguration.class,

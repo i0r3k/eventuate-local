@@ -3,3 +3,6 @@ dependencies {
     api project(":eventuate-client-java-spring-jdbc")
     api project(":eventuate-client-java-spring-autoconfigure")
 }
+tasks.withType(Test).configureEach {
+    useJUnitPlatform()
+}

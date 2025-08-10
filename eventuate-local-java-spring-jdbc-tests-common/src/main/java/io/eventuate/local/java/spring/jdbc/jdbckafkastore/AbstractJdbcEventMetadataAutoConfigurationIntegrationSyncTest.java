@@ -5,7 +5,7 @@ import io.eventuate.example.banking.domain.AccountCommand;
 import io.eventuate.local.java.jdbckafkastore.AbstractCommonJdbcEventMetadataAutoConfigurationIntegrationSyncTest;
 import io.eventuate.local.java.jdbckafkastore.AccountMetadataEventHandler;
 import io.eventuate.sync.AggregateRepository;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public abstract class AbstractJdbcEventMetadataAutoConfigurationIntegrationSyncTest extends AbstractCommonJdbcEventMetadataAutoConfigurationIntegrationSyncTest {

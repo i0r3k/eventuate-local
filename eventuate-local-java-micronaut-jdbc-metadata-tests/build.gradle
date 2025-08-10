@@ -1,5 +1,5 @@
 plugins {
-    id "io.spring.dependency-management" version "1.0.6.RELEASE"
+    id "io.spring.dependency-management" version "1.1.7"
 }
 
 
@@ -24,6 +24,7 @@ dependencies {
     testAnnotationProcessor "io.micronaut:micronaut-inject-java"
     testImplementation "org.junit.jupiter:junit-jupiter-api"
     testImplementation "io.micronaut.test:micronaut-test-junit5"
+    testImplementation "jakarta.inject:jakarta.inject-api:2.0.1"
     testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine"
 }
 

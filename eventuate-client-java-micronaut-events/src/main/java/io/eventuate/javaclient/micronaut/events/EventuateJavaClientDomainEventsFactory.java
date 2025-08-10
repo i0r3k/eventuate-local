@@ -6,7 +6,7 @@ import io.eventuate.javaclient.domain.*;
 import io.eventuate.javaclient.eventdispatcher.EventDispatcherInitializer;
 import io.micronaut.context.annotation.Factory;
 
-import javax.inject.Singleton;
+import jakarta.inject.Singleton;
 import java.util.concurrent.Executors;
 
 @Factory

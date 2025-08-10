@@ -39,7 +39,7 @@ public class EventTracker {
 
   public <T extends Event> ReceivedEvent assertMessagePublished(String entityId, Class<T> eventClass) {
     Predicate<ReceivedEvent> predicate = event -> event.getEntityId().equals(entityId) && event.getEventType().equals(eventClass);
-    String message = String.format("Haven't found event from %s of type %s", entityId, eventClass);
+    String message = "Haven't found event from %s of type %s".formatted(entityId, eventClass);
     return assertMessagePublished(message, predicate);
   }
 

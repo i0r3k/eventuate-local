@@ -1,7 +1,7 @@
 package io.eventuate.javaclient.eventhandling.exceptionhandling;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.time.Duration;
 import java.util.Collections;
@@ -24,7 +24,7 @@ public class EventDeliveryExceptionHandlerManagerImplTest {
   private Consumer<Throwable> fail;
   private Runnable ignore;
 
-  @Before
+  @BeforeEach
   public void setUp() {
     scheduler = spy(new MyEventuateClientScheduler());
 

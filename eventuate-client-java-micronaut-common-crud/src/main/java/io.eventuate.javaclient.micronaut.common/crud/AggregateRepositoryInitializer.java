@@ -4,8 +4,8 @@ import io.eventuate.AggregateRepository;
 import io.eventuate.CompositeMissingApplyEventMethodStrategy;
 import io.micronaut.context.annotation.Context;
 
-import javax.annotation.PostConstruct;
-import javax.inject.Inject;
+import jakarta.annotation.PostConstruct;
+import jakarta.inject.Inject;
 
 @Context
 public class AggregateRepositoryInitializer {

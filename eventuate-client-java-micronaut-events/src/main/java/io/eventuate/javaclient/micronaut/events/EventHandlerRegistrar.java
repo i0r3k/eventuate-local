@@ -6,7 +6,7 @@ import io.micronaut.context.annotation.Context;
 import org.springframework.aop.support.AopUtils;
 import org.springframework.beans.BeansException;
 
-import javax.annotation.PostConstruct;
+import jakarta.annotation.PostConstruct;
 
 @Context
 public class EventHandlerRegistrar {

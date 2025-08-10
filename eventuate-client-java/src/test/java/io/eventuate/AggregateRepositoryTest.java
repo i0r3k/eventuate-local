@@ -2,8 +2,8 @@ package io.eventuate;
 
 import io.eventuate.common.id.Int128;
 import io.eventuate.example.banking.domain.*;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
 import java.util.Collections;
@@ -14,7 +14,7 @@ import java.util.concurrent.ExecutionException;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
@@ -58,7 +58,7 @@ public class AggregateRepositoryTest {
     return account;
 
   }
-  @Before
+  @BeforeEach
   public void setUp() {
     aggregateStore = mock(EventuateAggregateStore.class);
     repository = new AggregateRepository<>(Account.class, aggregateStore);

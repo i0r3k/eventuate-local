@@ -6,7 +6,7 @@ import io.eventuate.javaclient.commonimpl.crud.EventuateAggregateStoreCrudImpl;
 import io.eventuate.javaclient.commonimpl.common.schema.EventuateEventSchemaManager;
 import io.micronaut.context.annotation.Factory;
 
-import javax.inject.Singleton;
+import jakarta.inject.Singleton;
 
 @Factory
 public class EventuateCommonCrudFactory {

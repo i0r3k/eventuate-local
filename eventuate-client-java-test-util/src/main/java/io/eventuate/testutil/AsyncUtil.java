@@ -15,8 +15,8 @@ public class AsyncUtil {
       throw new RuntimeException(e);
     } catch (ExecutionException e) {
       Throwable unwrapped = CompletableFutureUtil.unwrap(e);
-      if (unwrapped instanceof RuntimeException)
-        throw (RuntimeException)unwrapped;
+      if (unwrapped instanceof RuntimeException exception)
+        throw exception;
       else
         throw new RuntimeException(unwrapped);
     }

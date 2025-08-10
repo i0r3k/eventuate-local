@@ -11,7 +11,7 @@ import io.eventuate.example.banking.services.MoneyTransferCommandSideEventHandle
 import io.eventuate.example.banking.services.counting.InvocationCounter;
 import io.micronaut.context.annotation.Factory;
 
-import javax.inject.Singleton;
+import jakarta.inject.Singleton;
 
 @Factory
 public class JavaIntegrationTestDomainFactory {

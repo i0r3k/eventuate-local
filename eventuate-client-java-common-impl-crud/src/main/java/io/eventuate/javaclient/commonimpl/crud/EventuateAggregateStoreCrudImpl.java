@@ -51,7 +51,7 @@ public class EventuateAggregateStoreCrudImpl implements EventuateAggregateStoreC
         if (throwable == null)
           activityLogger.debug("Saved entity: {} {} {}", clasz.getName(), result.getEntityId(), AggregateCrudMapping.toSerializedEventsWithIds(serializedEvents, result.getEventIds()));
         else
-          activityLogger.error(String.format("Save entity failed: %s", clasz.getName()), throwable);
+          activityLogger.error("Save entity failed: %s".formatted(clasz.getName()), throwable);
       }).thenApply(EntityIdVersionAndEventIds::toEntityIdAndVersion);
     else
       return outcome.thenApply(EntityIdVersionAndEventIds::toEntityIdAndVersion);
@@ -89,9 +89,9 @@ public class EventuateAggregateStoreCrudImpl implements EventuateAggregateStoreC
           activityLogger.debug("Loaded entity: {} {} {}", clasz.getName(), entityId, result.getEvents());
         else {
           if (throwable instanceof EventuateException)
-            activityLogger.trace(String.format("Find entity failed: %s %s %s", clasz.getName(), entityId, throwable.getClass().getName()));
+            activityLogger.trace("Find entity failed: %s %s %s".formatted(clasz.getName(), entityId, throwable.getClass().getName()));
           else
-            activityLogger.trace(String.format("Find entity failed: %s %s", clasz.getName(), entityId), throwable);
+            activityLogger.trace("Find entity failed: %s %s".formatted(clasz.getName(), entityId), throwable);
         }
       });
     else
@@ -137,7 +137,7 @@ public class EventuateAggregateStoreCrudImpl implements EventuateAggregateStoreC
         if (throwable == null)
           activityLogger.debug("Updated entity: {} {} {}", clasz.getName(), result.getEntityId(), AggregateCrudMapping.toSerializedEventsWithIds(serializedEvents, result.getEventIds()));
         else
-          activityLogger.error(String.format("Update entity failed: %s %s", clasz.getName(), entityIdAndVersion), throwable);
+          activityLogger.error("Update entity failed: %s %s".formatted(clasz.getName(), entityIdAndVersion), throwable);
       }).thenApply(EntityIdVersionAndEventIds::toEntityIdAndVersion);
     else
       return outcome.thenApply(EntityIdVersionAndEventIds::toEntityIdAndVersion);
@@ -166,7 +166,7 @@ public class EventuateAggregateStoreCrudImpl implements EventuateAggregateStoreC
         if (throwable == null)
           activityLogger.debug("Updated entity without reading: {} {} {}", clasz.getName(), result.getEntityId(), AggregateCrudMapping.toSerializedEventsWithIds(serializedEvents, result.getEventIds()));
         else
-          activityLogger.error(String.format("Update entity without reading failed: %s %s", clasz.getName()), throwable);
+          activityLogger.error("Update entity without reading failed: %s %s".formatted(clasz.getName()), throwable);
       }).thenApply(EntityIdVersionAndEventIds::toEntityIdAndVersion);
     else
       return outcome.thenApply(EntityIdVersionAndEventIds::toEntityIdAndVersion);

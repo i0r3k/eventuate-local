@@ -3,16 +3,16 @@ package io.eventuate.javaclient.commonimpl.common.schema;
 import io.eventuate.common.id.Int128;
 import io.eventuate.common.json.mapper.JSonMapper;
 import io.eventuate.javaclient.commonimpl.common.EventIdTypeAndData;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
 import static java.util.Collections.singletonMap;
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.AdditionalAnswers.returnsFirstArg;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
@@ -28,7 +28,7 @@ public class DefaultEventuateEventSchemaManagerTest {
   private DefaultEventuateEventSchemaManager eventSchemaManager;
   private List<EventIdTypeAndData> unchanged;
 
-  @Before
+  @BeforeEach
   public void setUp() {
     upcaster1 = mockUpcaster();
     upcaster2 = mockUpcaster();
@@ -65,7 +65,7 @@ public class DefaultEventuateEventSchemaManagerTest {
     return uc;
   }
 
-  @After
+  @AfterEach
   public void tearDown() {
     verifyNoMoreInteractions(upcaster1, upcaster2, upcaster3, upcaster4, upcaster5);
   }

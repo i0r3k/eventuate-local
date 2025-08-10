@@ -2,9 +2,9 @@ package io.eventuate.javaclient.commonimpl.crud;
 
 import io.eventuate.EntityIdAndVersion;
 import io.eventuate.common.id.Int128;
-import org.apache.commons.lang.builder.EqualsBuilder;
-import org.apache.commons.lang.builder.HashCodeBuilder;
-import org.apache.commons.lang.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import java.util.List;
 
