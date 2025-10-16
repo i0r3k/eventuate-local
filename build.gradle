@@ -39,7 +39,9 @@ allprojects {
           testImplementation "org.junit.jupiter:junit-jupiter:$junitVersion"
           testRuntimeOnly "org.junit.platform:junit-platform-launcher:$junitPlatformLauncherVersion"
       }
-
+    configurations.all {
+        resolutionStrategy.cacheChangingModulesFor 5, 'minutes'
+    }
 }
 
 subprojects { project ->
